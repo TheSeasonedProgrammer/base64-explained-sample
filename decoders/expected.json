@@ -1,0 +1,145 @@
+{
+  "decoders": [
+    "Node Buffer.from(s, 'base64')",
+    "atob() (Node)",
+    "Uint8Array.fromBase64(s) (Chrome)",
+    "Uint8Array.fromBase64(s, { lastChunkHandling: \"strict\" }) (Chrome)",
+    "Python b64decode(s)",
+    "Python b64decode(s, validate=True)",
+    "base64 -d (GNU coreutils)"
+  ],
+  "rows": [
+    [
+      "TWFu",
+      [
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e"
+      ]
+    ],
+    [
+      "TQ==",
+      [
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "ok:4d"
+      ]
+    ],
+    [
+      "TR==",
+      [
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "error",
+        "ok:4d",
+        "ok:4d",
+        "error after:4d"
+      ]
+    ],
+    [
+      "TQ",
+      [
+        "ok:4d",
+        "ok:4d",
+        "ok:4d",
+        "error",
+        "error",
+        "error",
+        "ok:4d"
+      ]
+    ],
+    [
+      "TQ=",
+      [
+        "ok:4d",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error after:4d"
+      ]
+    ],
+    [
+      "TWFu=",
+      [
+        "ok:4d616e",
+        "error",
+        "error",
+        "error",
+        "ok:4d616e",
+        "error",
+        "error after:4d616e"
+      ]
+    ],
+    [
+      "TW Fu",
+      [
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "error",
+        "error after:4d"
+      ]
+    ],
+    [
+      "TWFu\n",
+      [
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "ok:4d616e",
+        "error",
+        "ok:4d616e"
+      ]
+    ],
+    [
+      "TW-u",
+      [
+        "ok:4d6fae",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error after:4d"
+      ]
+    ],
+    [
+      "TW_u",
+      [
+        "ok:4d6fee",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error after:4d"
+      ]
+    ],
+    [
+      "TW@u",
+      [
+        "ok:4d6b",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error",
+        "error after:4d"
+      ]
+    ]
+  ]
+}

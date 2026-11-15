@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  javascript:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [24, 26] # 26 adds the Uint8Array.fromBase64 columns of the decoder table
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node tests/test.mjs
+
+  python:
+    runs-on: ubuntu-latest # GNU coreutils base64 for the terminal example and its table column
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - run: python tests/test.py

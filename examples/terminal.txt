@@ -1,0 +1,9 @@
+$ printf 'Man' | base64
+TWFu
+$ printf 'TWFu' | base64 -d
+Man
+$ head -c 60 /dev/zero | base64      # GNU base64 wraps lines at 76 characters
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAA
+$ head -c 60 /dev/zero | base64 -w 0 # -w 0: one line (macOS base64 doesn't wrap by default)
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
