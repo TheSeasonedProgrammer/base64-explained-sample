@@ -20,14 +20,21 @@ ok("b64.py output matches its comments")
 
 expected = json.loads((decoders / "expected.json").read_text())
 py = json.loads(subprocess.run([sys.executable, decoders / "probe.py"], capture_output=True, text=True, check=True).stdout)
+# The base64 -d column is GNU coreutils. Ubuntu 26.04 and later ship a Rust rewrite (uutils) as base64, and macOS
+# has its own, and they treat some bad inputs differently, so the column is only checked against GNU.
+version = subprocess.run(["base64", "--version"], capture_output=True, text=True).stdout
+gnu = "GNU coreutils" in version
+if not gnu:
+    del py["base64 -d (GNU coreutils)"]
+    print("SKIP base64 -d column: this base64 isn't GNU coreutils:", version.split("\n")[0] or "(no --version)")
 columns = 0
 for i, d in enumerate(expected["decoders"]):
     if d in py:
         columns += 1
         for value, results in expected["rows"]:
             assert results[i] == py[d][value], (d, value, results[i], py[d][value])
-assert columns == 3, columns
-ok("decoder table: Python and coreutils columns match")
+assert columns == (3 if gnu else 2), columns
+ok(f"decoder table: {'Python and GNU coreutils' if gnu else 'Python'} columns match")
 
 # The terminal example: run each command and compare with the lines that follow it.
 lines = (examples / "terminal.txt").read_text().rstrip("\n").split("\n")

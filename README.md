@@ -48,11 +48,13 @@ python3 decoders/probe.py            # Python's b64decode variants and GNU base6
 
 ```sh
 node tests/test.mjs     # the JavaScript examples, plus the Node.js columns of the table
-python3 tests/test.py   # b64.py, the terminal example, and the Python and GNU coreutils columns (Linux)
+python3 tests/test.py   # b64.py, the terminal example, and the Python and GNU coreutils columns
 sh test.sh              # all of it in Docker: Node.js 24, Node.js 26 and Python 3.14
 ```
 
-`BENCH=1` also prints encoding and decoding speeds. CI runs the tests on Node.js 24 and 26 and on Python 3.14.
+The `base64 -d` column is GNU coreutils; with another `base64` (macOS, or the Rust rewrite in Ubuntu 26.04 and later),
+the Python test skips that column. `BENCH=1` also prints encoding and decoding speeds. CI runs the tests on Node.js 24
+and 26, and on Python 3.14 in Debian.
 
 ## What to take away
 

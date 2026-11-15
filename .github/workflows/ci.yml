@@ -21,10 +21,10 @@ jobs:
       - run: node tests/test.mjs
 
   python:
-    runs-on: ubuntu-latest # GNU coreutils base64 for the terminal example and its table column
+    runs-on: ubuntu-latest
+    # Debian, for GNU coreutils base64: the decoder table's column is GNU's, and Ubuntu 26.04's base64 is uutils.
+    container: python:3.14-slim
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.14"
+      - run: base64 --version | head -1
       - run: python tests/test.py
